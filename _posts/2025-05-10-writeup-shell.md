@@ -1,6 +1,6 @@
 ---
 title: Shell
 date: 2025-05-10 00:00:00 +0800
-categories: [Writeup, HackTheBox/Dockerlabs]
+categories: [Writeup, HackTheBox/DockerLabs]
 tags: [CTF]
 ---
