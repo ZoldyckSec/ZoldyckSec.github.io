@@ -1,6 +1,6 @@
 ---
 title: "Shell"
 date: 2025-05-10 00:00:00 +0800
-categories: [Writeup, HackTheBox]
+categories: [Writeup, ]
 tags: [CTF]
 ---
