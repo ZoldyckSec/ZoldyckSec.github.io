@@ -2,7 +2,7 @@
 # the default layout is 'page'
 layout: about
 icon: fas fa-info-circle
-order: 5
+order: 4
 ---
 # Hi, I´m ShadowBuck
 
