@@ -1,8 +1,8 @@
 ---
-title: Writing a New Post
-author: 
+title: Expressway
+author: ShadowBuck
 date: 2025-09-27 00:00:00 +0800
-categories: [Blogging, Tutorial]
-tags: [writing]
+categories: [HackTheBox, Expressway]
+tags: [ctf]
 render_with_liquid: false
 ---
