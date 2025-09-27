@@ -1,6 +1,8 @@
 ---
-title: "Expressway HTB"
-date: 2025-09-27 00:00:00 +0800    
-categories: [HackTheBox, Write-ups]
-tags: [ctf]
+title: Writing a New Post
+author: ShadowBuck
+date: 2019-08-08 14:10:00 +0800
+categories: [Blogging, Tutorial]
+tags: [writing]
+render_with_liquid: false
 ---
