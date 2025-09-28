@@ -6,7 +6,7 @@ date: 2025-09-28 00:00:00 +0800
 categories: [HackTheBox, Expressway]
 tags:
   [
-  UDP,
+    UDP,
   ]
 render_with_liquid: false
 image:
