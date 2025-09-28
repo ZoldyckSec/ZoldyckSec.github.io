@@ -98,7 +98,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "https://www.google.com/url?sa=i&url=https%3A%2F%2Far.pinterest.com%2Fpin%2F678636237591859327%2F&psig=AOvVaw1Y-J6pfG8_XGj4XPWdD3r_&ust=1759102522978000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKDp_OCN-o8DFQAAAAAdAAAAABAE"
+avatar: "C:\Proyecto GithubPages/965940f9d907d41605ee94fe1d108704.jpg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
