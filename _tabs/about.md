@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-# Hi, I'm ShadowBuck 👋
+# Hi, I'm ZoldyckSec 👋
 
 I'm a cybersecurity enthusiast and self-taught learner.
 
