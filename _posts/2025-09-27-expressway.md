@@ -6,4 +6,6 @@ date: 2025-09-28 00:00:00 +0800
 categories: [HackTheBox, Expressway]
 tags: [ctf]
 render_with_liquid: false
+image:
+path: /assets/img/Expressway/Card-Express.png
 ---
