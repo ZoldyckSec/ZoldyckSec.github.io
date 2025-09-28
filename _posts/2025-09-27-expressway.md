@@ -5,6 +5,4 @@ author: ZoldyckSec
 date: 2025-09-27 14:10:00 +0800
 categories: [HackTheBox, Expressway]
 tags: [ctf]
-image:
-  path: /assets/img/Expressway/Captura de pantalla 2025-09-27 234011.png
 ---
