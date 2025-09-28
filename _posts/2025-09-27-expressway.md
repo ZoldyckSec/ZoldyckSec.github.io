@@ -5,8 +5,5 @@ author: ShadowBuck
 date: 2025-09-27 00:00:00 +0800
 categories: [HackTheBox, Expressway]
 tags: [ctf]
-pin: true
-math: true
-mermaid: true
 image: /assets/img/Captura de pantalla 2025-09-27 214226.png
 ---
