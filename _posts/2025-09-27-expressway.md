@@ -7,5 +7,5 @@ categories: [HackTheBox, Expressway]
 tags: [ctf]
 render_with_liquid: false
 image:
-path: /assets/img/Expressway/Card-Express.png
+  path: /assets/img/Expressway/Card-Express.png
 ---
