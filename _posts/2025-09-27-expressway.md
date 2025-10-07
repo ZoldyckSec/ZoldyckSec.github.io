@@ -27,6 +27,14 @@ Expressway is an Easy difficulty Linux machine that focuses on enumerating non-c
 - Offline IKE hash brute-forcing
 - Sudo privilege escalation vulnerability exploitation
 
+## Reconnaissance
+
+#### Initial TCP Scan
+
+```bash
+nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn 10.10.11.87 -oG allPorts
+```
+
 
 
 
