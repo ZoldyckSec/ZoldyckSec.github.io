@@ -1,5 +1,5 @@
 ---
-title: Expressway - HTB
+title: PENETRATION TESTING REPORT - EXPRESSWAY MACHINE
 description:  Está maquina fue resuelta mientras estaba activa. Publicado tras su retiro oficial según las normas de HackTheBox.
 author: ZoldyckSec
 date: 2025-09-28 00:00:00 +0800
@@ -12,66 +12,47 @@ image:
 
 ## Description:
 
-Expressway is an Easy difficulty Linux machine that focuses on enumerating non-conventional services and exploiting misconfigured IPSec VPN setups. The machine initially shows only a single TCP port (SSH), but the real attack surface lies in UDP services, specifically a vulnerable IKE/ISAKMP (IPSec VPN) implementation configured in aggressive mode.
+Date: Sep 27, 2025
+Machine: Expressway (Linux)
+Difficulty: Easy
+Prepared by: Allan Espinoza(Aka.ZoldyckSec)
 
-## Main Themes:
+## EXECUTIVE SUMMARY
 
-- UDP service enumeration (port 500/udp - IKE/ISAKMP)
-- PSK brute-forcing (Pre-Shared Keys)
-- IPSec VPN attacks with aggressive mode enabled
+A security assessment was conducted against the Expressway machine, identifying critical vulnerabilities in the IPSec VPN service implementation. Complete system compromise was achieved through exploitation of an IKE/ISAKMP service configured in aggressive mode, followed by privilege escalation leveraging misconfigured sudo permissions on multiple executable scripts.
 
-## Skills Practiced:
+#### Key Findings
 
-- Advanced nmap scanning (UDP)
-- Specialized tool usage (ike-scan, psk-crack)
-- Offline IKE hash brute-forcing
-- Sudo privilege escalation vulnerability exploitation
+- `Critical` Service in agressive mode allowing PSK brute-forcing
+- `High` Weak Pre-Shared Key susceptible to dictionary attacks
+- `Critical`  Multiple scripts with sudo permissions allowing privilege escalation
 
-## Reconnaissance
+## 1. INTRODUCTION
 
-#### Initial TCP Scan
+#### 1.1 Scope and Objectives
+The assessment focused on the Expressway machine with the objective of identifying attack vectors through non-conventional services and vulnerable IPSec VPN configurations.
 
-```bash
-nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn 10.10.11.87 -oG allPorts
-```
-- `-p-` Scans all ports(1-65535) instead of just the most common ones
-- `-sS` Only shows open ports, ignoring closed or filtered ones.
-- `--min-rate 5000` Sets a minimum of 5000 packets per seconds, speeding up the scan.
-- `-vvv` Extreme verbose mode(shows more details during the scan).
-- `-n` No DNS resolution(avoids wasting time resolving domain names).
-- `Pn` Skips host discovery and assumes all hosts are active
+#### 1.2 Methodology
+A testing methodology centered on UDP enumeration and IPSec service exploitation was employed.
 
-#### Result
+- Exhaustive UDP service enumeration
+- IKE/ISAKMP service analysis on UDP port 500
+- Offline Pre-Shared Key (PSK) brute-forcing
+- Exploitation of vulnerable sudo configuration on multiple scripts
 
-```markdown
-# Nmap 7.95 scan initiated Fri Sep 26 20:22:45 2025 as: /usr/lib/nmap/nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn -oG allPorts 10.10.11.87
-# Ports scanned: TCP(65535;1-65535) UDP(0;) SCTP(0;) PROTOCOLS(0;)
-Host: 10.10.11.87 ()    Status: Up
-Host: 10.10.11.87 ()    Ports: 22/open/tcp//ssh///  Ignored State: closed (65534)
-# Nmap done at Fri Sep 26 20:23:01 2025 -- 1 IP address (1 host up) scanned in 15.65 seconds
-```
-Only SSH `22` is visible on standar TCP Scan
+## 2. TECHNICAL METHODOLOGY
 
-##  Service and Version Enumeration
+#### 2.1 Reconnaissance Phase
+- `Tools` nmap, ike-scan
+- `Techniques` Exhaustive UDP scanning, IKE service fingerprinting
 
-A service enumeration scan was performed against port 22 using Nmap's default scripts (-sC) and version detection (-sV) to gather detailed information about the SSH service."
+#### 2.2 Vulnerability Analysis Phase
+- `Tools` ike-scan, psk-crack, custom wordlists
+- `Techniques` Aggressive mode detection, IKE hash extraction
 
-```bash
-nmap -p22 -sCV 10.10.11.87 -oN targeted
-```
- - `-p22` Targeted port scanning focused exclusively on port `22(SSH)`
- - `-sC` Default NSE scripts execution for comprehensive service interrogation
- - `-sV` Version detection to indentify service/application versions and banners
+#### 2.3 Exploitation Phase
+- `Techniques` Offline PSK brute-forcing, sudo privilege abuse through multiple scripts
 
-#### Result 
-
-```markdown
-PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 10.0p2 Debian 8 (protocol 2.0)
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-```
-
-The single open port (SSH) running a recent version presented limited immediate attack surface. Without valid credentials,this vector offered low exploitaion porbability, promping exploration of alternative approaches.
 
 #### Initial UDP Scan
 
