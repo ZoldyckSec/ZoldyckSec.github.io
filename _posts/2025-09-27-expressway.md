@@ -15,7 +15,7 @@ image:
 - `Date` Sep 27, 2025
 - `Machine` Expressway (Linux)
 - `Difficulty` Easy
--  `Prepared by` Allan Espinoza(Aka.ZoldyckSec)
+- `Prepared by` Allan Espinoza(Aka.ZoldyckSec)
 
 ## EXECUTIVE SUMMARY
 
