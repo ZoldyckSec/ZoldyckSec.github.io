@@ -1,10 +1,6 @@
 ---
 title: PENETRATION TESTING REPORT - EXPRESSWAY MACHINE
-description:
- Date Sep 27, 2025
- Machine Expressway (Linux)
- Difficulty Easy
- Prepared by Allan Espinoza(Aka.ZoldyckSec)
+description: This write-up for the retired machine '[Machine Name]' was completed while the machine was still active on the HackTheBox platform. Publication was held until after its official retirement to comply with platform guidelines.
 author: ZoldyckSec
 date: 2025-09-28 00:00:00 +0800
 categories: [HackTheBox, Expressway]
@@ -15,7 +11,11 @@ image:
 ---
 
 ## Description:
-This write-up for the retired machine '[Machine Name]' was completed while the machine was still active on the HackTheBox platform. Publication was held until after its official retirement to comply with platform guidelines.
+
+- `Date` Sep 27, 2025
+- `Machine` Expressway (Linux)
+- `Difficulty` Easy
+-  `Prepared by` Allan Espinoza(Aka.ZoldyckSec)
 
 ## EXECUTIVE SUMMARY
 
