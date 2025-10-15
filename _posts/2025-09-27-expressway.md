@@ -16,10 +16,6 @@ image:
 
 ## Description:
 This write-up for the retired machine '[Machine Name]' was completed while the machine was still active on the HackTheBox platform. Publication was held until after its official retirement to comply with platform guidelines.
-- `Date` Sep 27, 2025
-- `Machine` Expressway (Linux)
-- `Difficulty` Easy
-- `Prepared by` Allan Espinoza(Aka.ZoldyckSec)
 
 ## EXECUTIVE SUMMARY
 
