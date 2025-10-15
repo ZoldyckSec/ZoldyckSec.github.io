@@ -1,12 +1,10 @@
 ---
 title: PENETRATION TESTING REPORT - EXPRESSWAY MACHINE
 description:
-[
-- `Date` Sep 27, 2025
-- `Machine` Expressway (Linux)
-- `Difficulty` Easy
-- `Prepared by` Allan Espinoza(Aka.ZoldyckSec)
-]
+ `Date` Sep 27, 2025
+ `Machine` Expressway (Linux)
+ `Difficulty` Easy
+ `Prepared by` Allan Espinoza(Aka.ZoldyckSec)
 author: ZoldyckSec
 date: 2025-09-28 00:00:00 +0800
 categories: [HackTheBox, Expressway]
