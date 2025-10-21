@@ -4,7 +4,7 @@ description: This write-up for the retired machine Expressway was completed whil
 author: ZoldyckSec
 date: 2025-09-28 00:00:00 +0800
 categories: [HackTheBox, Expressway]
-tags: [CTF, UDP, IKE, Easy, PSK,]
+tags: [CTF, UDP, IKE, Easy, PSK, CVE-2025-32463]
 render_with_liquid: false
 image:
   path: /assets/img/Expressway/Card-Express.png
