@@ -17,41 +17,26 @@ image:
 - `Difficulty` Easy
 - `Prepared by` Allan Espinoza(Aka.ZoldyckSec)
 
-## EXECUTIVE SUMMARY
+## 1.Reconnaissance Phase
 
-A security assessment was conducted against the Expressway machine, identifying critical vulnerabilities in the IPSec VPN service implementation. Complete system compromise was achieved through exploitation of an IKE/ISAKMP service configured in aggressive mode, followed by privilege escalation leveraging a sudo vulnerability (CVE-2025-32463).
+After identifying only port 22/TCP (SSH) without valid credentials, I expanded reconnaissance to UDP services, which often host less secure configurations or sensitive information. Since the initial TCP scan only revealed the SSH service with no means of access, I proceeded to perform a UDP scan to identify additional services operating in connectionless protocols.
 
-#### Key Findings
+#### 1.1 🔍 UDP Enumeration 
 
-- `Critical` Service in agressive mode allowing PSK brute-forcing
-- `High` Weak Pre-Shared Key susceptible to dictionary attacks
-- `Critical`  Multiple scripts with sudo permissions allowing privilege escalation
+```bash
+nmap -sU --top-ports 100 -T4 -v -n --reason -oN UDP 10.10.11.87
+```
+- `-sU` **UDP Scan**. Sends UDP probes to ports and waits for either a response or an ICMP "port unreachable" message. UDP lacks a handshake, which is why it's typically slower and less accurate than TCP.
 
-## 1. INTRODUCTION
+- `--top-ports` Scans **the top 100 most common UDP ports** according to the Nmap database (instead of 1-65535). Good for quick reconnaissance, but may miss services on non-standard ports.
 
-#### 1.1 Scope and Objectives
-The assessment focused on the Expressway machine with the objective of identifying attack vectors through non-conventional services and vulnerable IPSec VPN configurations.
+- `-T4` **Timing Template**: Aggressive/Fast. Reduces timeouts and waits less for responses → faster scan but higher risk of **false negatives** and more network noise (detectable by IDS/IPS). Often reasonable for UDP, but if a firewall delays responses, prefer `-T3` or `-T4` with retries.
 
-#### 1.2 Methodology
-A testing methodology centered on UDP enumeration and IPSec service exploitation was employed.
+- `-v` **Verbosity**: More detailed console output. Shows progress and useful information. (You can use `-vv`/`-vvv` for more detail, but `-v` is usually sufficient.)
 
-- Exhaustive UDP service enumeration
-- IKE/ISAKMP service analysis on UDP port 500
-- Offline Pre-Shared Key (PSK) brute-forcing
-- Exploitation of vulnerable sudo configuration on multiple scripts
+- `-n` **No DNS resolution**. Nmap will not attempt to resolve IP → hostname (faster, less DNS traffic).
 
-## 2. TECHNICAL METHODOLOGY
-
-#### 2.1 Reconnaissance Phase
-- `Tools` nmap, ike-scan
-- `Techniques` Exhaustive UDP scanning, IKE service fingerprinting
-
-#### 2.2 Vulnerability Analysis Phase
-- `Tools` ike-scan, psk-crack, custom wordlists
-- `Techniques` Aggressive mode detection, IKE hash extraction
-
-#### 2.3 Exploitation Phase
-- `Techniques` Offline PSK brute-forcing, sudo privilege abuse through multiple scripts
+- `--reason` Shows **why** Nmap classified a port (e.g., "ICMP port unreachable" → closed; "no response" → open|filtered). Very useful for interpreting UDP results.
 
 ## 3. DETAILED FINDINGS
 
@@ -131,24 +116,7 @@ root@expressway:/# whoami
 root
 ```
 
-## 4. EXPLOITATION AND POST-EXPLOITATION
 
-#### 4.1 Initial Compromise
-
-```bash
-nmap -sU --top-ports 100 -T4 -v -n --reason -oN UDP 10.10.11.87
-```
-- `-sU` **UDP Scan**. Sends UDP probes to ports and waits for either a response or an ICMP "port unreachable" message. UDP lacks a handshake, which is why it's typically slower and less accurate than TCP.
-
-- `--top-ports` Scans **the top 100 most common UDP ports** according to the Nmap database (instead of 1-65535). Good for quick reconnaissance, but may miss services on non-standard ports.
-
-- `-T4` **Timing Template**: Aggressive/Fast. Reduces timeouts and waits less for responses → faster scan but higher risk of **false negatives** and more network noise (detectable by IDS/IPS). Often reasonable for UDP, but if a firewall delays responses, prefer `-T3` or `-T4` with retries.
-
-- `-v` **Verbosity**: More detailed console output. Shows progress and useful information. (You can use `-vv`/`-vvv` for more detail, but `-v` is usually sufficient.)
-
-- `-n` **No DNS resolution**. Nmap will not attempt to resolve IP → hostname (faster, less DNS traffic).
-
-- `--reason` Shows **why** Nmap classified a port (e.g., "ICMP port unreachable" → closed; "no response" → open|filtered). Very useful for interpreting UDP results.
 
 
 
