@@ -38,6 +38,117 @@ nmap -sU --top-ports 100 -T4 -v -n --reason -oN UDP 10.10.11.87
 
 - `--reason` Shows **why** Nmap classified a port (e.g., "ICMP port unreachable" → closed; "no response" → open|filtered). Very useful for interpreting UDP results.
 
+#### Evidence 
+
+```markdown
+PORT      STATE         SERVICE         REASON
+7/udp     closed        echo            port-unreach ttl 63
+9/udp     closed        discard         port-unreach ttl 63
+17/udp    open|filtered qotd            no-response
+19/udp    closed        chargen         port-unreach ttl 63
+49/udp    closed        tacacs          port-unreach ttl 63
+53/udp    closed        domain          port-unreach ttl 63
+67/udp    closed        dhcps           port-unreach ttl 63
+68/udp    open|filtered dhcpc           no-response
+69/udp    open|filtered tftp            no-response
+80/udp    closed        http            port-unreach ttl 63
+88/udp    closed        kerberos-sec    port-unreach ttl 63
+111/udp   closed        rpcbind         port-unreach ttl 63
+120/udp   closed        cfdptkt         port-unreach ttl 63
+123/udp   closed        ntp             port-unreach ttl 63
+135/udp   open|filtered msrpc           no-response
+136/udp   closed        profile         port-unreach ttl 63
+137/udp   closed        netbios-ns      port-unreach ttl 63
+138/udp   open|filtered netbios-dgm     no-response
+139/udp   closed        netbios-ssn     port-unreach ttl 63
+158/udp   open|filtered pcmail-srv      no-response
+161/udp   closed        snmp            port-unreach ttl 63
+162/udp   closed        snmptrap        port-unreach ttl 63
+177/udp   open|filtered xdmcp           no-response
+427/udp   closed        svrloc          port-unreach ttl 63
+443/udp   closed        https           port-unreach ttl 63
+445/udp   closed        microsoft-ds    port-unreach ttl 63
+497/udp   closed        retrospect      port-unreach ttl 63
+500/udp   open          isakmp          udp-response ttl 63
+514/udp   closed        syslog          port-unreach ttl 63
+515/udp   closed        printer         port-unreach ttl 63
+518/udp   closed        ntalk           port-unreach ttl 63
+520/udp   closed        route           port-unreach ttl 63
+593/udp   closed        http-rpc-epmap  port-unreach ttl 63
+623/udp   closed        asf-rmcp        port-unreach ttl 63
+626/udp   closed        serialnumberd   port-unreach ttl 63
+631/udp   closed        ipp             port-unreach ttl 63
+996/udp   closed        vsinet          port-unreach ttl 63
+997/udp   closed        maitrd          port-unreach ttl 63
+998/udp   closed        puparp          port-unreach ttl 63
+999/udp   closed        applix          port-unreach ttl 63
+1022/udp  open|filtered exp2            no-response
+1023/udp  closed        unknown         port-unreach ttl 63
+1025/udp  closed        blackjack       port-unreach ttl 63
+1026/udp  closed        win-rpc         port-unreach ttl 63
+1027/udp  open|filtered unknown         no-response
+1028/udp  closed        ms-lsa          port-unreach ttl 63
+1029/udp  closed        solid-mux       port-unreach ttl 63
+1030/udp  closed        iad1            port-unreach ttl 63
+1433/udp  closed        ms-sql-s        port-unreach ttl 63
+1434/udp  closed        ms-sql-m        port-unreach ttl 63
+1645/udp  closed        radius          port-unreach ttl 63
+1646/udp  open|filtered radacct         no-response
+1701/udp  closed        L2TP            port-unreach ttl 63
+1718/udp  closed        h225gatedisc    port-unreach ttl 63
+1719/udp  closed        h323gatestat    port-unreach ttl 63
+1812/udp  closed        radius          port-unreach ttl 63
+1813/udp  closed        radacct         port-unreach ttl 63
+1900/udp  closed        upnp            port-unreach ttl 63
+2000/udp  open|filtered cisco-sccp      no-response
+2048/udp  closed        dls-monitor     port-unreach ttl 63
+2049/udp  closed        nfs             port-unreach ttl 63
+2222/udp  closed        msantipiracy    port-unreach ttl 63
+2223/udp  open|filtered rockwell-csp2   no-response
+3283/udp  closed        netassistant    port-unreach ttl 63
+3456/udp  open|filtered IISrpc-or-vat   no-response
+3703/udp  open|filtered adobeserver-3   no-response
+4444/udp  closed        krb524          port-unreach ttl 63
+4500/udp  open|filtered nat-t-ike       no-response
+5000/udp  closed        upnp            port-unreach ttl 63
+5060/udp  closed        sip             port-unreach ttl 63
+5353/udp  closed        zeroconf        port-unreach ttl 63
+5632/udp  closed        pcanywherestat  port-unreach ttl 63
+9200/udp  closed        wap-wsp         port-unreach ttl 63
+10000/udp closed        ndmp            port-unreach ttl 63
+17185/udp closed        wdbrpc          port-unreach ttl 63
+20031/udp open|filtered bakbonenetvault no-response
+30718/udp closed        unknown         port-unreach ttl 63
+31337/udp closed        BackOrifice     port-unreach ttl 63
+32768/udp open|filtered omad            no-response
+32769/udp closed        filenet-rpc     port-unreach ttl 63
+32771/udp closed        sometimes-rpc6  port-unreach ttl 63
+32815/udp closed        unknown         port-unreach ttl 63
+33281/udp closed        unknown         port-unreach ttl 63
+49152/udp closed        unknown         port-unreach ttl 63
+49153/udp open|filtered unknown         no-response
+49154/udp open|filtered unknown         no-response
+49156/udp closed        unknown         port-unreach ttl 63
+49181/udp closed        unknown         port-unreach ttl 63
+49182/udp closed        unknown         port-unreach ttl 63
+49185/udp closed        unknown         port-unreach ttl 63
+49186/udp open|filtered unknown         no-response
+49188/udp closed        unknown         port-unreach ttl 63
+49190/udp closed        unknown         port-unreach ttl 63
+49191/udp closed        unknown         port-unreach ttl 63
+49192/udp closed        unknown         port-unreach ttl 63
+49193/udp closed        unknown         port-unreach ttl 63
+49194/udp closed        unknown         port-unreach ttl 63
+49200/udp closed        unknown         port-unreach ttl 63
+49201/udp closed        unknown         port-unreach ttl 63
+65024/udp closed        unknown         port-unreach ttl 63
+```
+#### Hallazgo 
+- Port 500 is primarily used by the Internet Key Exchange (IKE) protocol.
+```
+500/udp   open          isakmp          udp-response ttl 63
+```
+
 ## 3. DETAILED FINDINGS
 
 #### 3.1 Critical Finding 001: IKE/ISAKMP Service in Aggressive Mode
