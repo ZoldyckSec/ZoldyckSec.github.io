@@ -38,7 +38,7 @@ nmap -sU --top-ports 100 -T4 -v -n --reason -oN UDP 10.10.11.87
 
 - `--reason` Shows **why** Nmap classified a port (e.g., "ICMP port unreachable" → closed; "no response" → open|filtered). Very useful for interpreting UDP results.
 
-#### Evidence 
+#### Evidence:
 
 ```markdown
 PORT      STATE         SERVICE         REASON
@@ -143,15 +143,15 @@ PORT      STATE         SERVICE         REASON
 49201/udp closed        unknown         port-unreach ttl 63
 65024/udp closed        unknown         port-unreach ttl 63
 ```
-#### Hallazgo 
+#### Findings 
+
 - Port 500 is primarily used by the Internet Key Exchange (IKE) protocol.
+
 ```
 500/udp   open          isakmp          udp-response ttl 63
 ```
 
-## 3. DETAILED FINDINGS
-
-#### 3.1 Critical Finding 001: IKE/ISAKMP Service in Aggressive Mode
+We performed an IKE/ISAKMP service in Aggressive Mode
 
 The IKE/ISAKMP service on UDP port 500 is configured in aggressive mode, allowing hash extraction for offline brute-force attacks.
 
