@@ -3,8 +3,8 @@ title: WRITE UP - EXPRESSWAY MACHINE
 description: This write-up for the retired machine Expressway was completed while the machine was still active on the HackTheBox platform. Publication was held until after its official retirement to comply with platform guidelines.
 author: ZoldyckSec
 date: 2025-09-28 00:00:00 +0800
-categories: [HackTheBox]                 <-- ¡Solo la plataforma!
-tags: [Expressway, Linux, CTF, UDP, IKE, Easy, PSK, CVE-2025-32463]  <-- Añade 'Expressway' y el OS ('Linux' o 'Windows') aquí
+categories: [HackTheBox]
+tags: [Expressway, Linux, CTF, UDP, IKE, Easy, PSK, CVE-2025-32463]
 render_with_liquid: false
 image:
   path: /assets/img/Expressway/Card-Express.png
