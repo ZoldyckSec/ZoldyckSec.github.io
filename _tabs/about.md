@@ -18,6 +18,6 @@ Hi! I’m Allan Espinoza, a cybersecurity enthusiast
 | Platform      | Link                                      | 
 | :------------ | :---------------------------------------- |
 | Linkedin      | <https://www.linkedin.com/in/zoldycksec/> |
-| Github        |                                           | 
+| Github        | <https://github.com/ZoldyckSec>                                          | 
 
 
