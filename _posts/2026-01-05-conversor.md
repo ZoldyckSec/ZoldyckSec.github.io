@@ -2,7 +2,7 @@
 title: Expressway - HackTheBox WriteUp
 description: This write-up for the retired machine Expressway was completed while the machine was still active on the HackTheBox platform. Publication was held until after its official retirement to comply with platform guidelines.
 author: ZoldyckSec
-date: 2025-09-28 00:00:00 +0800
+date: 2026-01-05 00:00:00 -0800
 categories: [HackTheBox]
 tags: [Conversor, Linux, Path-transversal, SSTI, sqlite]
 render_with_liquid: false
