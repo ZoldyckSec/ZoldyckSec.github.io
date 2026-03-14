@@ -1,5 +1,5 @@
 ---
-title: Expressway - HackTheBox WriteUp
+title: Conversor - HackTheBox WriteUp
 description: This write-up for the retired machine Expressway was completed while the machine was still active on the HackTheBox platform. Publication was held until after its official retirement to comply with platform guidelines.
 author: ZoldyckSec
 date: 2026-01-05 00:00:00 -0800
