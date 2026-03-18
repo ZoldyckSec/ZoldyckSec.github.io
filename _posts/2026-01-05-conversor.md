@@ -96,12 +96,13 @@ def convert():
     xml_path = os.path.join(UPLOAD_FOLDER, xml_file.filename)
     xml_file.save(xml_path)
 ```
+> The developer trusts the user-provided filename and concatenates it directly using os.path.join without sanitizing it through Werkzeug's secure_filename() function
 
 ## Explotation
 
 #### Path Traversal + SSTI
 
 
-> The developer trusts the user-provided filename and concatenates it directly using os.path.join without sanitizing it through Werkzeug's secure_filename() function
+
 
 
