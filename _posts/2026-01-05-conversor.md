@@ -106,7 +106,7 @@ Knowing that Flask applications store their HTML templates in a /templates direc
 
 #### Malicious HTTP Request:
 
-```HTTP
+```markdown
 POST /convert HTTP/1.1
 Host: conversor.htb
 Content-Type: multipart/form-data; boundary=----geckoformboundary
@@ -131,7 +131,7 @@ Content-Type: text/xml
 ------geckoformboundary--
 ```
 
-> After sending the request, the server successfully overwrote the file. To trigger the payload, I set up a Netcat listener (nc -lvnp 443) and simply navigated to http://conversor.htb/about. The server rendered our malicious template, executing the reverse shell and granting access as the www-data user.
+After sending the request, the server successfully overwrote the file. To trigger the payload, I set up a Netcat listener (nc -lvnp 443) and simply navigated to http://conversor.htb/about. The server rendered our malicious template, executing the reverse shell and granting access as the www-data user.
 
 ## Lateral Movement
 
