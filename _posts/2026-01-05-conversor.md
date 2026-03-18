@@ -16,7 +16,7 @@ render_with_liquid: false
 
 ## Summary
 
-This machine is a great lesson in why developers should not only protect against a format's most well-known vulnerabilities (such as XXE in XML), but also sanitize basic user input. We will move from a black box analysis to a source code audit (White-Box), forge an attack chain combining **Path Traversal** and **Server-Side Template Injection (SSTI)**, and culminate in an escalation of privileges exploiting **CVE-2024-48990**.
+This machine is a great lesson in why developers should not only protect against a format's most well-known vulnerabilities (such as XXE in XML), but also sanitize basic user input. We will move from a black box analysis to a source code audit (White-Box), forge an attack chain combining **Path Traversal** and **Server-Side Template Injection (SSTI)**.
 
 ## Reconnaissance
 
@@ -74,5 +74,34 @@ http://conversor.htb/login [200 OK] Apache[2.4.52], Country[RESERVED][ZZ], HTML5
 
 #### Source Code Analysis
 
+While exploring the application, I navigated to the /about page and found a link to download the application's source code (source_code.tar.gz).
+
+![Desktop View](/assets/img/Conversor/source.png){: width="972" height="589" }
+
+Extracting and reviewing the code revealed that the backend is built with Python's Flask framework. My initial attempts to test for XXE (XML External Entity) injection failed, and looking at the app.py file explained why:
+
+```markdown
+parser = etree.XMLParser(resolve_entities=False, no_network=True, dtd_validation=False, load_dtd=False)
+```
+However, auditing the /convert endpoint (which handles the file uploads) revealed a critical Arbitrary File Write vulnerability via Path Traversal:
+
+```python
+@app.route('/convert', methods=['POST'])
+def convert():
+    # [...]
+    xml_file = request.files['xml_file']
+    xslt_file = request.files['xslt_file']
+
+    # Vulnerable implementation
+    xml_path = os.path.join(UPLOAD_FOLDER, xml_file.filename)
+    xml_file.save(xml_path)
+```
+
+## Explotation
+
+#### Path Traversal + SSTI
+
+
+> The developer trusts the user-provided filename and concatenates it directly using os.path.join without sanitizing it through Werkzeug's secure_filename() function
 
 
