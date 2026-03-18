@@ -6,6 +6,7 @@ date: 2026-01-05 00:00:00 -0800
 categories: [HackTheBox]
 tags: [Conversor, Linux, Path-transversal, SSTI, sqlite]
 render_with_liquid: false
+published: false
 ---
 ## Description:
 
